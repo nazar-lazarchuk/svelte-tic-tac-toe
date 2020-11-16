@@ -1,7 +1,9 @@
 <script>
   export let squares = 3;
   export let winScore = 3;
-  export let players = ['John', 'Tom'].sort(() => .5 - Math.random());
+  export let players = ['John', 'Tom'];
+  export let fullStroke = false;
+  export let colToLineSizeRelation;
 
   import Field from './components/Field';
   import Col from './components/Col';
@@ -28,19 +30,29 @@
   button {
     float: right;
   }
+  button.active {
+    background: green;
+    color: white;
+  }
 </style>
+
+<button on:click={startNewGame} class:active={$gameState.complete}>Restart</button>
 
 {#if !$gameState.complete}
   <h1>Plays: {$playerName}</h1>
 {:else if $gameState.draw}
-  <button on:click={startNewGame}>Start new game</button>
   <h1>Draw!</h1>
-  {:else}
-  <button on:click={startNewGame}>Start new game</button>
+{:else}
   <h1>{$gameState.playerName} won! =)</h1>
 {/if}
 
-<Field {squares} let:i={i} let:j={j}>
+<Field
+  {squares}
+  {colToLineSizeRelation}
+  visibleLinesCount={fullStroke ? squares + 1 : squares - 1}
+  let:i
+  let:j
+>
   <Col disabled={$cols[i][j].playerId >= 0} clickHandler={$cols[i][j].onMove}>
     <svelte:component this={signs[$cols[i][j].playerId]} />
   </Col>
