@@ -1,3 +1,6 @@
+# Implementation of the popular game "Tic Tac Toe" using the Svelte.js framework
+Click [here](https://nazar-lazarchuk.github.io/svelte-tic-tac-toe/) to open [DEMO](https://nazar-lazarchuk.github.io/svelte-tic-tac-toe/)
+
 *Looking for a shareable component template? Go here --> [sveltejs/component-template](https://github.com/sveltejs/component-template)*
 
 ---
